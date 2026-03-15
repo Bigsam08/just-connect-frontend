@@ -1,0 +1,52 @@
+@import "tailwindcss";
+:root {
+  --color-brand: #f97316; /* orange 500 */
+  --color-brand-hover: #ea580c; /* orange 600 */
+  --color-brand-white: #ffffff; /* white */
+  --color-snow: #f9fafb; /* gray 50 */
+
+  --color-text-main: #111827; /* gray 900 */
+  --color-text-sub: #4b5563; /* gray 600 */
+  --color-success: #22c55e; /* green 500 */
+  --color-danger: #ef4444; /* red 500 */
+}
+
+/* ============ UTILITIES ========= **/
+@layer utilities {
+  .text-brand {
+    color: var(--color-brand);
+  }
+  .hover\:text-brand-hover:hover {
+    color: var(--color-brand-hover);
+  }
+  .bg-brand {
+    background: var(--color-brand);
+  }
+  .hover\:bg-brand-hover:hover {
+    background: var(--color-brand-hover);
+  }
+  /* ============  White ============ */
+  .text-brand-white {
+    color: var(--color-brand-white) !important;
+  }
+  .hover\:text-brand-white:hover {
+    color: var(--color-brand-white) !important;
+  }
+
+  .bg-brand-white {
+    background: var(--color-brand-white) !important;
+  }
+  .hover\:bg-brand-white-hover:hover {
+    background: var(--color-brand-white) !important;
+  }
+
+    /* =========== Section Titles  ========= */
+  .text-section-title {
+    @apply text-xl md:text-2xl font-bold leading-tight inline-block;
+  }
+
+  /* Section Subtitle */
+  .text-section-subtitle {
+    @apply text-gray-600 leading-relaxed mt-4 max-w-xl mx-auto;
+  }
+}
