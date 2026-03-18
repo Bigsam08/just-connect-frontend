@@ -28,23 +28,26 @@ const MobileMenu = () => {
 
       {/** Display the menu */}
       {showMenu && (
-        <div className="md:hidden absolute top-full left-0 min-h-[80vh] mt-2 px-2 w-full bg-black/80 backdrop-blur-3xl">
-          <ul className="space-y-8 py-16  items-center gap-8 text-brand-white font-medium">
-            {NavLinks.map((n, idx) => (
-              <li
-                key={idx}
-                onClick={() => setShowMenu(false)}
-                className="p-4 hover:text-brand-hover cursor-pointer transition"
-              >
-                <a href={n.link}>{n.title}</a>
-              </li>
-            ))}
-          </ul>
+        <div className="fixed top-17 left-0 w-full h-[80vh] bg-gray-700 z-999">
+          <div className="px-4 pt-20">
+            <ul className="space-y-8 text-brand-white font-medium">
+              {NavLinks.map((n, idx) => (
+                <li
+                  key={idx}
+                  onClick={() => setShowMenu(false)}
+                  className="p-4 hover:text-brand-hover cursor-pointer transition"
+                >
+                  <a href={n.link}>{n.title}</a>
+                </li>
+              ))}
+            </ul>
 
-          {/** CTA  */}
-          <Link to="/login">
-            <Button className="w-full">Sign In <IoMdArrowForward /></Button>
-          </Link>
+            <Link to="/login">
+              <Button className="w-full mt-10" size="lg">
+                Sign In <IoMdArrowForward />
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

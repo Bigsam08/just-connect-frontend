@@ -1,119 +1,208 @@
 /**
- * @description Sign Up page with role selection (Artisan or User)
+ * @description Register component with account type selection
  */
 
 import { useState } from "react";
-import Logo from "../../assets/vite.svg"; // your logo
-import HeroImage from "../../assets/hero.png"
+import AuthLayout from "../../components/Auth/AuthLayout";
+import Input from "../../components/Common/Input";
+import Button from "../../components/Common/Button";
+import { Link } from "react-router-dom";
+import { validateRegister } from "../../libs/validation";
 
 const Register = () => {
-  const [role, setRole] = useState(""); // "artisan" or "user"
+  const [accountType, setAccountType] = useState(""); // "user" | "professional"
+  const [errors, setErrors] = useState({});
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    skill: "", // only for professionals
+    location: "" // Only for professionals
+  });
+
+  // Handle input
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error while typing 
+     setErrors((prev) => ({
+       ...prev,
+       [name]: "",
+     }));
+  };
+
+  // Submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validateRegister(formData, accountType);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    console.log("Register Data:", { ...formData, accountType });
+  };
 
   return (
-    <section className="min-h-screen flex">
-      {/* Left Branding Section */}
-      <div className="hidden md:flex w-1/2 relative text-white">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HeroImage})` }} // reuse HeroImage
-        />
-        {/* Gradient overlay for readability */}
-        <div className="absolute inset-0 bg-black/80"></div>
+    <AuthLayout>
+      {!accountType ? (
+        // ===== STEP 1: Choose account type =====
+        <div className="text-center space-y-6">
+          <h2 className="text-lg md:text-2xl font-bold">Choose Account Type</h2>
 
-        {/* Text */}
-        <div className="relative z-10 flex flex-col justify-center h-full px-10 text-center">
-          <h1 className="text-4xl font-bold mb-4">
-            Join <span className="font-extrabold">JustConnect</span>
-          </h1>
-          <p className="text-lg text-orange-100 text-center bg-red-600">
-            Discover and support skilled artisans, or become one yourself!
+          <p className="text-gray-500 text-sm">
+            To get started, pick the type of account you want to create.
           </p>
+
+          <div className="flex flex-col gap-4 justify-center mt-6">
+            <button
+              onClick={() => setAccountType("user")}
+              className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition cursor-pointer"
+            >
+              👤 User
+              <p className="text-sm text-gray-400 mt-2">
+                Find and hire artisans
+              </p>
+            </button>
+
+            <button
+              onClick={() => setAccountType("professional")}
+              className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition cursor-pointer"
+            >
+              🛠 Professional
+              <p className="text-sm text-gray-400 mt-2">
+                Offer your skills and get clients
+              </p>
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        // ===== STEP 2: Show form =====
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="flex justify-between items-center">
+            <h2 className="text-md text-brand md:text-xl font-semibold capitalize">
+              {accountType} Registration
+            </h2>
 
-      {/* Right Form Section */}
-      <div className="flex flex-1 items-center justify-center bg-gray-50 px-6">
-        <div className="w-full max-w-md p-8">
-          {/* Logo + Back Button */}
-          <div className="flex items-center gap-4 mb-6">
-            <button className="text-gray-500 hover:text-gray-700">
-              &#8592;
-            </button>
-            <img src={Logo} alt="JustConnect Logo" className="h-8" />
-          </div>
-
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            Create your account
-          </h2>
-
-          {/* Role Selection */}
-          <div className="flex justify-center gap-4 mb-6">
             <button
-              onClick={() => setRole("user")}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
-                role === "user" ? "bg-orange-500 text-white" : "bg-gray-200"
-              }`}
+              type="button"
+              onClick={() => setAccountType("")}
+              className="text-sm text-gray-400 hover:underline"
             >
-              User
-            </button>
-            <button
-              onClick={() => setRole("artisan")}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
-                role === "artisan" ? "bg-orange-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              Artisan
+              Change
             </button>
           </div>
 
-          {/* Form */}
-          {role && (
-            <form className="space-y-5">
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
+          <Input
+            label="Full Name"
+            placeholder="John Doe"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            error={errors.name}
+          />
 
-              {/* Extra fields for Artisan */}
-              {role === "artisan" && (
-                <input
-                  type="text"
-                  placeholder="Skill / Craft"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              )}
+          <Input
+            label="Email address"
+            placeholder="example@gmail.com"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+          />
 
-              <button
-                type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg"
-              >
-                Sign Up
-              </button>
-            </form>
+          <div className="grid grid-cols-2 gap-3">
+            <Input
+              label="Password"
+              placeholder="Min of 6 characters"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={errors.password}
+            />
+            <Input
+              label="Confirm Password"
+              placeholder="Retype password"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              error={errors.confirmPassword}
+            />
+          </div>
+
+          {/* Only show for artisans  skills + location*/}
+          {accountType === "professional" && (
+            <div className="grid grid-cols-2 gap-3">
+              <Input
+                label="Skill"
+                placeholder="(e.g. Tailor, Carpenter) ..."
+                name="skill"
+                value={formData.skill}
+                onChange={handleChange}
+                error={errors.skill}
+              />
+              <Input
+                label="Location"
+                placeholder="Lagos, Nigeria"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                error={errors.location}
+              />
+            </div>
           )}
 
-          {/* Login link */}
-          <p className="text-sm text-center mt-6 text-gray-600">
+          {/** TERMS & POLICIES */}
+          <div className="text-sm text-gray-500 mt-4">
+            By signing up, you agree to our{" "}
+            <a
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand hover:underline"
+            >
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand hover:underline"
+            >
+              Privacy Policy
+            </a>
+            .
+          </div>
+
+          <Button type="submit" className="w-full mt-8">
+            Create Account
+          </Button>
+
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex-1 h-px bg-gray-200"></div>
+            <span className="text-xs text-gray-400">OR</span>
+            <div className="flex-1 h-px bg-gray-200"></div>
+          </div>
+
+          <p className="text-sm text-center text-gray-500">
             Already have an account?{" "}
-            <span className="text-orange-500 cursor-pointer hover:underline">
+            <Link to="/login" className="text-orange-500 hover:underline">
               Login
-            </span>
+            </Link>
           </p>
-        </div>
-      </div>
-    </section>
+        </form>
+      )}
+    </AuthLayout>
   );
 };
 

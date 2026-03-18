@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
-    <section className="py-32 bg-linear-to-b from-gray-50 via-orange-500 to-white px-6 md:px-16 text-center text-gray-800 rounded-t-3xl">
+    <section className="py-32 bg-linear-to-b from-gray-50 via-orange-500 to-white px-6 md:px-16 text-center text-gray-800 rounded-t-3xl overflow-x-hidden">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-section-title mb-6" data-aos="fade">
           Ready to connect with skilled artisans?
@@ -23,8 +23,8 @@ const CTA = () => {
           </Link>
 
           <Link to="/register" data-aos="fade-left">
-            <button type="button" className="border cursor-pointer border-gray-500 font-semibold px-6 py-3 rounded-lg hover:bg-white transition">
-              Raedy to offer services?
+            <button type="button" className="shadow-lg cursor-pointer font-semibold px-6 py-3 rounded-lg hover:bg-brand-hover hover:text-white transition">
+              Ready to offer services?
             </button>
           </Link>
         </div>

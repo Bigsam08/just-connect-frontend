@@ -4,8 +4,13 @@
 
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import ContactIllustration from "../../assets/contactUs.svg";
+import { useState } from "react";
 
 const ContactUs = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
   return (
     <section
       id="contact"
@@ -33,16 +38,19 @@ const ContactUs = () => {
               <input
                 type="text"
                 placeholder="Your Name"
+                value={name}
                 className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <input
                 type="email"
                 placeholder="Your Email"
+                value={email}
                 className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <textarea
                 placeholder="Your Message"
                 rows={5}
+                value={message}
                 className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
               ></textarea>
               <button

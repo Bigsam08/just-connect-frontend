@@ -11,6 +11,10 @@
   --color-danger: #ef4444; /* red 500 */
 }
 
+body{
+   overflow-x: hidden;
+}
+
 /* ============ UTILITIES ========= **/
 @layer utilities {
   .text-brand {
@@ -40,7 +44,7 @@
     background: var(--color-brand-white) !important;
   }
 
-    /* =========== Section Titles  ========= */
+  /* =========== Section Titles  ========= */
   .text-section-title {
     @apply text-xl md:text-2xl font-bold leading-tight inline-block;
   }
@@ -50,3 +54,4 @@
     @apply text-gray-600 leading-relaxed mt-4 max-w-xl mx-auto;
   }
 }
+
