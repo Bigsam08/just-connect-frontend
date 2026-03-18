@@ -1,82 +1,90 @@
-import Logo from "../../assets/vite.svg"; // your logo
-import HeroImage from "../../assets/hero.png"; // left side background image
+/**
+ * @description Builds the Login page for our app,
+ *              A universal authLayout  and a chidlren form field passed
+ */
+
+import { useState } from "react";
+import AuthLayout from "../../components/Auth/AuthLayout";
+import Input from "../../components/Common/Input";
+import Button from "../../components/Common/Button";
+import { Link } from "react-router-dom";
+import { validateLogin } from "../../libs/validation";
 
 const Login = () => {
+  const [errors, setErrors] = useState({});
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // Handle user input state
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setLoginData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const SubmitLoginData = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validateLogin(loginData);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+  };
+
   return (
-    <section className="min-h-screen flex">
-      {/* Left Branding Section */}
-      <div className="hidden md:flex w-1/2 relative text-white">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HeroImage})` }}
+    <AuthLayout>
+      <form onSubmit={SubmitLoginData} className="space-y-2 lg:space-y-4" data-aos="fade-in">
+        <h2 className="text-center font-bold text-xl text-brand pb-4"> Login </h2>
+        <Input
+          label="Email address"
+          type="email"
+          placeholder="Enter email"
+          name="email"
+          value={loginData.email}
+          onChange={handleChange}
+          error={errors.email}
         />
+        <Input
+          label="Password"
+          type="password"
+          placeholder="********"
+          name="password"
+          value={loginData.password}
+          onChange={handleChange}
+          error={errors.password}
+        />
+        <p className="text-sm text-gray-400 text-end hover:underline">
+          <Link to="/forgot-password"> Forgot password?</Link>
+        </p>
 
-        {/* Overlay to improve text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <Button type="submit" className="w-full mt-8">
+          {" "}
+          Login
+        </Button>
 
-        {/* Text Content */}
-        <div className="relative z-10 flex flex-col justify-center h-full px-10">
-          <h1 className="text-4xl font-bold mb-4">
-            Welcome back to <span className="font-extrabold">JustConnect</span>
-          </h1>
-          <p className="text-lg text-orange-100">
-            Connect with skilled artisans and bring your ideas to life.
-          </p>
-        </div>
-      </div>
-
-      {/* Right Form Section */}
-      <div className="flex flex-1 items-center justify-center bg-gray-50 px-6">
-        <div className="w-full max-w-md p-8">
-          {/* Logo + Back Button */}
-          <div className="flex items-center gap-4 mb-6">
-            <button className="text-gray-500 hover:text-gray-700">
-              &#8592; {/* Back arrow */}
-            </button>
-            <img src={Logo} alt="JustConnect Logo" className="h-8" />
+        <div className="mt-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex-1 h-px bg-gray-200"></div>
+            <span className="text-xs text-gray-400">OR</span>
+            <div className="flex-1 h-px bg-gray-200"></div>
           </div>
 
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            Login to your account
-          </h2>
-
-          <form className="space-y-5">
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <div className="flex justify-between text-sm">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" /> Remember me
-              </label>
-              <a href="#" className="text-orange-500 hover:underline">
-                Forgot password?
-              </a>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg"
-            >
-              Login
-            </button>
-          </form>
-
-          <p className="text-sm text-center mt-6 text-gray-600">
+          <p className="text-sm text-center text-gray-500">
             Don’t have an account?{" "}
-            <span className="text-orange-500 cursor-pointer hover:underline">
-              Sign up
-            </span>
+            <Link to="/register" className="text-orange-500 hover:underline">
+              Join now
+            </Link>
           </p>
         </div>
-      </div>
-    </section>
+      </form>
+    </AuthLayout>
   );
 };
 

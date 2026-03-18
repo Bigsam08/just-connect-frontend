@@ -8,7 +8,7 @@ const HowItWorks = () => {
   return (
     <section
       id="howitworks"
-      className="scroll-mt-24 py-20 bg-gray-50 px-6 md:px-16 mt-8"
+      className="scroll-mt-24 py-20 bg-gray-50 px-6 md:px-16 mt-8 overflow-x-hidden"
     >
       <div className="max-w-7xl mx-auto text-center">
         {/* Section Title */}

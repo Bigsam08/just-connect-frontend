@@ -7,9 +7,9 @@ import { GiCompass } from "react-icons/gi";
 
 const SearchBar = () => {
   return (
-    <div className="backdrop-blur-md bg-white shadow-xl border border-gray-200 rounded-xl p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-center gap-3">
+    <div className="backdrop-blur-md bg-white shadow-xl border border-gray-200 rounded-xl p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-center gap-3 w-full">
       {/* Search skill */}
-      <div className="flex items-center flex-1 border rounded-lg px-3">
+      <div className="flex items-center w-full border rounded-lg px-3">
         <FaSearch className="text-brand mr-2" />
         <input
           type="text"
@@ -19,7 +19,7 @@ const SearchBar = () => {
       </div>
 
       {/* Location */}
-      <div className="flex items-center flex-1 border rounded-lg px-3">
+      <div className="flex items-center w-full border rounded-lg px-3">
         <FaMapMarkerAlt className="text-brand mr-2" />
         <input
           type="text"
