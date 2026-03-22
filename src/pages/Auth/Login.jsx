@@ -1,6 +1,6 @@
 /**
  * @description Builds the Login page for our app,
- *              A universal authLayout  and a chidlren form field passed
+ *              A universal authLayout  and a children form field passed
  */
 
 import { useState } from "react";
@@ -8,7 +8,7 @@ import AuthLayout from "../../components/Auth/AuthLayout";
 import Input from "../../components/Common/Input";
 import Button from "../../components/Common/Button";
 import { Link } from "react-router-dom";
-import { validateLogin } from "../../libs/validation";
+import { validateLogin } from "../../libs/authValidation";
 
 const Login = () => {
   const [errors, setErrors] = useState({});

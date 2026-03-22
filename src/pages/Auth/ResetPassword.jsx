@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import AuthLayout from "../../components/Auth/AuthLayout";
 import Button from "../../components/Common/Button";
 import Input from "../../components/Common/Input";
-import { validateResetPassword } from "../../libs/validation";
+import { validateResetPassword } from "../../libs/authValidation";
 
 const ResetPassword = () => {
   const [password, setPasswword] = useState("");
