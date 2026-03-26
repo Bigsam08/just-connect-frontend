@@ -58,8 +58,6 @@ const ArtisanProfile = () => {
             <span className="text-sm font-medium">{artisan.rating}</span>
           </div>
 
-          <p className="mt-2 font-semibold text-gray-800">{artisan.price}/day</p>
-
           {/* Actions */}
           <div className="mt-4 flex gap-3 justify-center md:justify-start">
             <button

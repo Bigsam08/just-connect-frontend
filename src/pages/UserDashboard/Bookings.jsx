@@ -15,7 +15,6 @@ const sampleBookings = [
     time: "10:00 AM",
     location: "Lagos",
     status: "Upcoming",
-    price: "₦5,000",
     img: "https://i.pravatar.cc/150?img=10",
   },
   {
@@ -26,7 +25,6 @@ const sampleBookings = [
     time: "02:00 PM",
     location: "Ikeja",
     status: "Completed",
-    price: "₦4,500",
     img: "https://i.pravatar.cc/150?img=12",
   },
   {
@@ -37,7 +35,6 @@ const sampleBookings = [
     time: "09:00 AM",
     location: "Surulere",
     status: "Cancelled",
-    price: "₦6,000",
     img: "https://i.pravatar.cc/150?img=14",
   },
 ];

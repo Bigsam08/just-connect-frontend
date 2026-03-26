@@ -10,7 +10,6 @@ export const recommendedArtisans = [
     skill: "Electrician",
     rating: 4.8,
     location: "Lagos",
-    price: "₦5,000",
     img: "https://i.pravatar.cc/150?img=10",
     about:
       "Experienced electrician with over 7 years of professional service. متخصص in wiring, installation, and maintenance.",
@@ -31,7 +30,6 @@ export const recommendedArtisans = [
     skill: "Plumber",
     rating: 4.7,
     location: "Ikeja",
-    price: "₦4,500",
     img: "",
     // img: "https://i.pravatar.cc/150?img=12",
     about: "A fully certified Plumber with over 10 years experience",
@@ -44,7 +42,6 @@ export const recommendedArtisans = [
     skill: "Carpenter",
     rating: 4.9,
     location: "Surulere",
-    price: "₦6,000",
     img: "https://i.pravatar.cc/150?img=14",
     about: "",
     services: ["Furniture", "Interior designs", "Roofing"],

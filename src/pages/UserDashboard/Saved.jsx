@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Heart, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-
 const initialSaved = [
   {
     id: 1,
@@ -38,7 +37,10 @@ const Saved = () => {
   return (
     <div className="w-full space-y-6 max-w-4xl">
       {/* Header */}
-      <div className="flex justify-between items-center bg-brand py-6 px-4 text-brand-white rounded-xl" data-aos="fade">
+      <div
+        className="flex justify-between items-center bg-brand py-6 px-4 text-brand-white rounded-xl"
+        data-aos="fade"
+      >
         <h1 className="text-2xl font-semibold">Saved Artisans</h1>
         <p className="text-sm">{saved.length} saved</p>
       </div>
@@ -80,11 +82,13 @@ const Saved = () => {
 
               {/* Actions */}
               <div className="mt-4 flex justify-between items-center">
-                <span className="font-medium text-gray-700">
-                  {artisan.price}
-                </span>
-
-                <button type="button" onClick={() => navigate(`/dashboard/user/artisan-profile/${artisan.id}`)} className="bg-brand  text-white px-3 py-1 rounded-lg text-sm hover:bg-brand-hover transition cursor-pointer">
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigate(`/dashboard/user/artisan-profile/${artisan.id}`)
+                  }
+                  className="bg-brand  text-white px-3 py-1 rounded-lg text-sm hover:bg-brand-hover transition cursor-pointer"
+                >
                   View
                 </button>
               </div>

@@ -41,9 +41,7 @@ const ArtisanCard = ({ artisan }) => {
 
       {/* Price & Button */}
       <div className="mt-4 flex flex-col md:flex-row justify-between gap-3 md:gap-0 md:items-center">
-        <span className="font-semibold text-gray-700 text-sm">
-          {artisan.price}/day
-        </span>
+        
         <button
           type="button"
           onClick={() =>

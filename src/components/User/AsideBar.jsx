@@ -15,8 +15,14 @@ const AsideBar = ({ onNavigate }) => {
       {/* Top */}
       <div>
         {/* Logo */}
-        <div className="mb-8 px-2">
-          <h1 className="text-xl font-bold">User</h1>
+        <div className="mb-8 px-2 flex items-center gap-2">
+          <div className="h- w-6 bg-black rounded-md text-center text-white font-bold">
+            U
+          </div>
+          <div>
+            <p className="text-md font-bold leading-4">User</p>
+            <p className="text-xs text-brand-white">Manage your services</p>
+          </div>
         </div>
 
         {/* Nav Links */}

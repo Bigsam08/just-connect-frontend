@@ -35,7 +35,6 @@ const BookingCard = ({ booking }) => {
         >
           {booking.status}
         </span>
-        <span className="text-gray-700 font-semibold">{booking.price}</span>
       </div>
 
       {/* Actions */}
