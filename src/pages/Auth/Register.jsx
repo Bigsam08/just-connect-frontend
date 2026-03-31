@@ -7,7 +7,7 @@ import AuthLayout from "../../components/Auth/AuthLayout";
 import Input from "../../components/Common/Input";
 import Button from "../../components/Common/Button";
 import { Link } from "react-router-dom";
-import { validateRegister } from "../../libs/validation";
+import { validateRegister } from "../../libs/authValidation";
 
 const Register = () => {
   const [accountType, setAccountType] = useState(""); // "user" | "professional"

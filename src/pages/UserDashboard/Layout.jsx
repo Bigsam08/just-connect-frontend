@@ -1,21 +1,28 @@
 /**
- * @desc This dispalys the fundamental layout structure for the User dashboard
+ * @desc This displays the fundamental layout structure for the User dashboard
  */
 
 import { Outlet } from "react-router-dom";
+import AsideBar from "../../components/User/AsideBar";
+import Navbar from "../../components/User/Navbar";
 
 const Layout = () => {
   return (
-    <div className="flex p-4 h-screen gap-4 w-full">
-      {/** Sidebar */}
-      <aside className="hidden md:flex w-64 bg-white/10 border-r p-4">Navlinks</aside>
+    <div className="flex h-screen w-full bg-gray-50">
+      {/* Sidebar */}
+      <aside className="hidden md:flex justify-center w-64 p-4 flex-col bg-brand rounded-r-full">
+        <AsideBar />
+      </aside>
 
-      {/** Right side */}
-      <div className="flex flex-col gap-4 flex-1">
-        {/** Header */}
-        <header className="p-4 border-b">top of dashboard</header>
-        {/** Main content */}
-        <main className="p-4 flex grow bg-gray-50 overflow-y-auto text-black">
+      {/* Right side */}
+      <div className="flex flex-col flex-1">
+        {/* Header */}
+        <header className="h-16 border-b border-gray-100 rounded-full flex items-center justify-between">
+          <Navbar />
+        </header>
+
+        {/* Main content */}
+        <main className="flex-1 overflow-y-auto p-4">
           <Outlet />
         </main>
       </div>

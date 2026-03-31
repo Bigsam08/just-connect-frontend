@@ -4,12 +4,29 @@
 
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import ContactIllustration from "../../assets/contactUs.svg";
+import Input from "../../components/Common/Input";
+import Button from "../../components/Common/Button";
 import { useState } from "react";
+import { contactUsValidation } from "../../libs/contactUsValidation";
 
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
+
+  // Handle submission
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+
+    // validate input
+    const validationErrors = contactUsValidation({ name, email, message });
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    // Send api response
+  };
 
   return (
     <section
@@ -34,31 +51,56 @@ const ContactUs = () => {
         <div className="flex flex-col-reverse md:flex-row justify-center items-center mt-12">
           {/* Contact Form */}
           <div className="w-full md:w-1/2 md:col-span-2 p-8">
-            <form className="flex flex-col gap-4">
-              <input
+            <form onSubmit={handleSendMessage}>
+              <Input
                 type="text"
                 placeholder="Your Name"
                 value={name}
-                className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (errors.name) {
+                    setErrors((prev) => ({
+                      ...prev,
+                      name: "",
+                    }));
+                  }
+                }}
+                error={errors.name}
               />
-              <input
+              <Input
                 type="email"
                 placeholder="Your Email"
                 value={email}
-                className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (errors.email) {
+                    setErrors((prev) => ({
+                      ...prev,
+                      email: "",
+                    }));
+                  }
+                }}
+                error={errors.email}
               />
               <textarea
-                placeholder="Your Message"
-                rows={5}
+                placeholder={
+                  errors.message ? errors.message : "Your Message..."
+                }
                 value={message}
-                className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-              ></textarea>
-              <button
-                type="submit"
-                className="bg-brand hover:bg-brand-hover text-brand-white font-semibold px-6 py-3 rounded-lg transition"
-              >
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                  if (errors.message) {
+                    setErrors((prev) => ({
+                      ...prev,
+                      message: "",
+                    }));
+                  }
+                }}
+                className={`border text-sm px-4 py-2 w-full my-8 h-36 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${errors && errors.message ? "border-orange-500 text-red-600" : "border-gray-300 text-gray-500"}`}
+              />
+              <Button type="submit" className="w-full">
                 Send Message
-              </button>
+              </Button>
             </form>
           </div>
 
