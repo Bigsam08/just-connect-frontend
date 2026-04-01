@@ -31,8 +31,9 @@ const Hero = () => {
           className="text-5xl md:text-6xl font-bold leading-tight mb-6"
           data-aos="fade"
         >
-          Crafting
-          <span className="text-brand">Unique Artisanal</span> Experiences
+          Need Help At Home?{" "}
+          <span className="text-brand">Find Trusted - Professionals </span> Near
+          You
         </h1>
 
         <p
@@ -40,8 +41,8 @@ const Hero = () => {
           data-aos="fade"
           data-aos-delay="300"
         >
-          Discover and support talented artisans, find bespoke creations, and
-          make your space truly special.
+          Book skilled professionals for your home and everyday needs. Fast,
+          easy, and reliable.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

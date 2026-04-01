@@ -7,13 +7,13 @@ import { FaCheckCircle, FaUserShield, FaBolt, FaStar } from "react-icons/fa";
 const features = [
   {
     icon: <FaUserShield />,
-    title: "Verified Artisans",
-    desc: "All artisans are verified to ensure quality and trust.",
+    title: "Verified Professionals",
+    desc: "All professionals are verified to ensure quality and trust.",
   },
   {
     icon: <FaBolt />,
     title: "Fast Connections",
-    desc: "Connect instantly with skilled artisans near you.",
+    desc: "Connect instantly with skilled professionals near you.",
   },
   {
     icon: <FaStar />,

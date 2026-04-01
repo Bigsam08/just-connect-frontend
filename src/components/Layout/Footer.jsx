@@ -33,8 +33,8 @@ const Footer = () => {
             Just <span className="text-brand">Connect</span>
           </h1>
           <p className="text-gray-400">
-            Connecting you with skilled artisans across Africa. Find the right
-            professional for your project with ease.
+            Connecting you with skilled professionals across Africa. Find the
+            right professional for your project with ease.
           </p>
 
           {/* Social Links */}
@@ -80,7 +80,8 @@ const Footer = () => {
 
       {/* Bottom copyright */}
       <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} JustConnect. All rights reserved.
+        &copy; 2025 - {new Date().getFullYear()} JustConnect. All rights
+        reserved.
       </div>
     </footer>
   );

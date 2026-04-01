@@ -8,6 +8,7 @@ import ChatButton from "../components/LandingPage/Chat";
 import ContactUs from "../components/LandingPage/ContactUs";
 import CTA from "../components/LandingPage/CTA";
 import FAQ from "../components/LandingPage/FAQ";
+import FeaturedProfessionals from "../components/LandingPage/FeaturedProfessionals";
 import Hero from "../components/LandingPage/Hero";
 import HowItWorks from "../components/LandingPage/HowItWorks";
 import Testimonials from "../components/LandingPage/Testimonials";
@@ -20,6 +21,7 @@ const LandingPage = () => {
       <Hero />
       <HowItWorks />
       <Categories />
+      <FeaturedProfessionals />
       <AboutUs />
       <WhyChooseUs />
       <Testimonials />

@@ -3,7 +3,7 @@
  */
 
 export const NavLinks = [
-  { title: "Artisians", link: "#artisians" },
+  { title: "Featured", link: "#professionals" },
   { title: "How It Works", link: "#howitworks" },
   { title: "FAQ", link: "#faq" },
   { title: "Contact", link: "#contact" },
