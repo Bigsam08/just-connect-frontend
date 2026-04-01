@@ -2,15 +2,18 @@
  * @description An exportable dmock up data to display recommendations for user in user dahboard
  */
 
+import Pearl from "../assets/pearl.webp"
+import Mayowa from "../assets/mayowa.webp";
+import Emeka from "../assets/emeka.webp"
 
 export const recommendedArtisans = [
   {
     id: 1,
-    name: "John Doe",
+    name: "Emeka Duru",
     skill: "Electrician",
     rating: 4.8,
     location: "Lagos",
-    img: "https://i.pravatar.cc/150?img=10",
+    img: Emeka,
     about:
       "Experienced electrician with over 7 years of professional service. متخصص in wiring, installation, and maintenance.",
     services: ["House wiring", "Electricial installation", "Fault fixing"],
@@ -26,23 +29,22 @@ export const recommendedArtisans = [
   },
   {
     id: 2,
-    name: "Mary Smith",
+    name: "Mayowa Olajide",
     skill: "Plumber",
     rating: 4.7,
-    location: "Ikeja",
-    img: "",
-    // img: "https://i.pravatar.cc/150?img=12",
+    location: "Ikeja, Lagos",
+    img: Mayowa,
     about: "A fully certified Plumber with over 10 years experience",
     services: ["Pipe leak", "Full house installation"],
     reviews: [],
   },
   {
     id: 3,
-    name: "David Carpenter",
-    skill: "Carpenter",
+    name: "Pearl Efe",
+    skill: "Cleaner",
     rating: 4.9,
-    location: "Surulere",
-    img: "https://i.pravatar.cc/150?img=14",
+    location: "Uyo",
+    img: Pearl,
     about: "",
     services: ["Furniture", "Interior designs", "Roofing"],
     reviews: [],

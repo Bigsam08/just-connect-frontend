@@ -2,7 +2,9 @@
  * @description Defines data for the landing page sections
  */
 
-import ImgShow from "../assets/hubPic.webp"
+import Okoro from "../assets/okoro.webp"
+import Ada from "../assets/ada.webp"
+import Tunde from "../assets/tunde.webp";
 import {
   FaSearch,
   FaCommentDots,
@@ -25,18 +27,18 @@ import { FaScissors } from "react-icons/fa6";
 export const howItWorksData = [
   {
     icon: FaSearch,
-    title: "Find an Artisan",
-    text: "Search by skill, service, or location to discover talented artisans near you.",
+    title: "Find a professional",
+    text: "Search by skill, service, or location to discover talented professional near you.",
   },
   {
     icon: FaCommentDots,
     title: "Connect & Discuss",
-    text: "Reach out directly to artisans, discuss your project, and get quotes.",
+    text: "Reach out directly to professional, discuss your project, and get quotes.",
   },
   {
     icon: FaCheckCircle,
     title: "Get It Done",
-    text: "Hire your artisan and get quality work done efficiently and safely.",
+    text: "Hire your professional and get quality work done efficiently and safely.",
   },
 ];
 
@@ -115,9 +117,9 @@ export const categories = [
 /** FAq */
 export const faqs = [
   {
-    question: "How do I verify an artisan?",
+    question: "How do I verify an professional?",
     answer:
-      "All artisans are verified by our team before they can join the platform to ensure quality and trust.",
+      "All professionals are verified by our team before they can join the platform to ensure quality and trust.",
   },
   {
     question: "How does payment work?",
@@ -127,7 +129,7 @@ export const faqs = [
   {
     question: "Can I cancel a job?",
     answer:
-      "Yes, you can cancel a job before the artisan starts. Terms vary depending on the agreement.",
+      "Yes, you can cancel a job before the professional starts. Terms vary depending on the agreement.",
   },
   {
     question: "Is there a mobile app?",
@@ -142,19 +144,19 @@ export const testimonials = [
     name: "Ada Nwosu",
     location: "Lagos, Nigeria",
     quote: "Found an amazing carpenter in minutes! Highly recommended.",
-    img: ImgShow,
+    img: Ada,
   },
   {
     name: "Tunde Balogun",
     location: "Abuja, Nigeria",
-    quote: "The platform makes finding reliable artisans so easy.",
-    img: ImgShow,
+    quote: "The platform makes finding reliable professional so easy.",
+    img: Tunde,
   },
   {
     name: "Chinwe Okoro",
     location: "Port Harcourt, Nigeria",
     quote: "I love how secure and fast the payment system is!",
-    img: ImgShow,
+    img: Okoro,
   },
 ];
 

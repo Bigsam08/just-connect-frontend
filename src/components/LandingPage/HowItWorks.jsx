@@ -22,7 +22,7 @@ const HowItWorks = () => {
             data-aos-delay="500"
           ></div>
           <p className="text-section-subtitle">
-            Getting the right artisan for your job is quick and easy with
+            Getting the right professional for your job is quick and easy with
             JustConnect.
           </p>
         </div>

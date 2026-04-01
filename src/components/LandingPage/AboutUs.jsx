@@ -1,4 +1,4 @@
-import AboutImage from "../../assets/hubPic.webp";
+import AboutImage from "../../assets/about-us.webp";
 
 const AboutUs = () => {
   return (
@@ -43,7 +43,7 @@ const AboutUs = () => {
             data-aos-delay="100"
           >
             JustConnect is a platform dedicated to connecting individuals with
-            talented artisans across Africa. Whether you’re looking for
+            talented professionals across Africa. Whether you’re looking for
             carpentry, tailoring, painting, or other skilled services, we make
             it simple to find trusted professionals.
           </p>
@@ -53,7 +53,7 @@ const AboutUs = () => {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            Our mission is to empower artisans, provide a secure and reliable
+            Our mission is to empower professionals, provide a secure and reliable
             experience for clients, and support local craftsmanship in every
             community.
           </p>
