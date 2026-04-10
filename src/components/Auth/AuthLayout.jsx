@@ -41,20 +41,20 @@ const AuthLayout = ({ children }) => {
       </div>
 
       {/* ===== Floating Form Section ===== */}
-      <div className="relative z-20 -mt-24 md:-mt-32 px-4">
-        <div
-          className="max-w-xl mx-auto bg-white rounded-2xl shadow-2xl p-6 md:p-8 min-h-75 max-h-[80vh] overflow-y-auto"
-        >
-          {/* Back Button */}
-          <button
-            onClick={() => navigate("/")}
-            className="text-gray-500 text-sm mb-4 hover:bg-gray-200 cursor-pointer px-2 py-1 rounded"
-          >
-            ← Back
-          </button>
+      <div className="relative z-20 -mt-24 md:-mt-32 px-4 pb-20">
+        <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-2xl shadow-black/10 p-6 md:p-8 mb-20">
+          {/* Sticky header still fine */}
+          <div className="sticky top-0 bg-white pb-4 z-10">
+            <button
+              onClick={() => navigate("/")}
+              className="text-gray-500 text-sm hover:bg-gray-100 px-2 py-1 rounded"
+            >
+              ← Back
+            </button>
+          </div>
 
           {/* Form */}
-          {children}
+          <div className="space-y-4">{children}</div>
         </div>
       </div>
     </div>

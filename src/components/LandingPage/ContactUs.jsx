@@ -7,7 +7,7 @@ import ContactIllustration from "../../assets/contactUs.svg";
 import Input from "../../components/Common/Input";
 import Button from "../../components/Common/Button";
 import { useState } from "react";
-import { contactUsValidation } from "../../libs/contactUsValidation";
+import { contactUsValidation } from "../../validation/contactUsValidation";
 
 const ContactUs = () => {
   const [name, setName] = useState("");

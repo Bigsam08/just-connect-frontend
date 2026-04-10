@@ -3,7 +3,7 @@
  */
 
 import { useState } from "react";
-import { getNameInitials} from "../../libs/getNameInitials"
+import { getNameInitials } from "../../libs/getNameInitials";
 import AccountDeletionModal from "../../components/User/AccountDeleteModal";
 import { useNavigate } from "react-router-dom";
 
@@ -14,15 +14,19 @@ const Settings = () => {
     phone: "+2348000000000",
     location: "Lagos, Nigeria",
     password: "",
-    image: "",
+    profile_picture: "",
+    sex: "",
+    address: "",
   };
   const [deleteModal, setDeleteModal] = useState(false);
   const [form, setForm] = useState({
     name: user.name,
     phone: user.phone || "",
     location: user.location,
+    sex: user.sex,
+    address: user.address,
     password: "",
-    image: user.image || "",
+    profile_picture: user.profile_picture || "",
   });
   const navigate = useNavigate();
 
@@ -90,9 +94,9 @@ const Settings = () => {
 
         {/* Profile Image */}
         <div className="flex items-center gap-4">
-          {form.image ? (
+          {form.profile_picture ? (
             <img
-              src={form.image}
+              src={form.profile_picture}
               alt="profile"
               className="w-20 h-20 rounded-full object-cover"
             />
@@ -129,6 +133,26 @@ const Settings = () => {
             placeholder="Email Address"
             value={user.email}
             readOnly
+            className="p-3 border border-gray-200 bg-white text-sm text-gray-500 rounded-lg outline-none"
+          />
+          <select
+            value={form.sex}
+            onChange={handleChange}
+            name="sex"
+            className="p-3 border border-gray-200 bg-white text-sm text-gray-500
+          rounded-lg outline-none"
+          >
+            <option> -- Gender -- </option>
+            <option value={"male"}> Male </option>
+            <option value={"female"}> Female</option>
+          </select>
+
+          <input
+            type="text"
+            name="address"
+            placeholder="23, johnson mark street."
+            value={form.address}
+            onChange={handleChange}
             className="p-3 border border-gray-200 bg-white text-sm text-gray-500 rounded-lg outline-none"
           />
           <input

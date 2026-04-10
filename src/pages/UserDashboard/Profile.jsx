@@ -3,6 +3,7 @@
  */
 
 import { getNameInitials } from "../../libs/getNameInitials";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const Profile = () => {
   // sample user data (replace with API later)
@@ -10,9 +11,12 @@ const Profile = () => {
     name: "Big Sam",
     email: "bigsam@example.com",
     phone: "+234 800 000 0000",
+    sex: "",
+    address: "",
     location: "Lagos, Nigeria",
+    is_verified: false,
     joined: "January 2026",
-    img: "",
+    profile_picture: "",
     bookings: 12,
     completed: 10,
   };
@@ -30,9 +34,9 @@ const Profile = () => {
 
       {/** avatar header */}
       <section className="bg-white p-6 rounded-2xl shadow flex flex-col md:flex-row items-center gap-6">
-        {user.img ? (
+        {user.profile_picture ? (
           <img
-            src={user.img}
+            src={user.profile_picture}
             alt={user.name}
             className="w-24 h-24 rounded-full object-cover"
           />
@@ -42,8 +46,24 @@ const Profile = () => {
           </div>
         )}
 
-        <div className="text-center md:text-left">
-          <h1 className="text-2xl font-semibold">{user.name}</h1>
+        <div className="text-center md:text-left w-fit">
+          <h1 className="text-2xl font-semibold">
+            {user.name}
+            <span className="inline-flex rounded-full">
+              {" "}
+              {user.is_verified ? (
+                <div className="flex items-center gap-2 px-2">
+                  <FaCheckCircle color="green" size={14} />
+                  <span className="text-xs text-gray-500"> verified</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 px-2">
+                  <FaTimesCircle color="yellow" size={14} />
+                  <span className="text-xs text-gray-500"> not verified</span>
+                </div>
+              )}{" "}
+            </span>
+          </h1>
           <p className="text-gray-500 text-sm">{user.location}</p>
           <p className="text-gray-400 text-xs mt-1">Joined {user.joined}</p>
         </div>
@@ -57,6 +77,18 @@ const Profile = () => {
           <div>
             <span className="text-gray-500">Email</span>
             <p className="font-medium">{user.email}</p>
+          </div>
+          <div>
+            <span className="text-gray-500">Sex</span>
+            <p className="font-medium">{user?.sex || "N/A"}</p>
+          </div>
+          <div>
+            <span className="text-gray-500">Address</span>
+            <p className="font-medium">{user?.address || "N/A"}</p>
+          </div>
+          <div>
+            <span className="text-gray-500">Phone</span>
+            <p className="font-medium">{user.phone}</p>
           </div>
 
           <div>

@@ -54,8 +54,8 @@ export const validateRegister = (data, role) => {
 
   // ===== Role-specific validation =====
   if (role === "professional") {
-    if (!data.skill || data.skill.trim() === "") {
-      errors.skill = "Primary skill is required";
+    if (!data.category || data.category.trim() === "") {
+      errors.category = "Primary category is required";
     }
 
     // validate location

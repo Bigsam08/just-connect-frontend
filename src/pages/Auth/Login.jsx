@@ -8,7 +8,7 @@ import AuthLayout from "../../components/Auth/AuthLayout";
 import Input from "../../components/Common/Input";
 import Button from "../../components/Common/Button";
 import { Link } from "react-router-dom";
-import { validateLogin } from "../../libs/authValidation";
+import { validateLogin } from "../../validation/authValidation";
 
 const Login = () => {
   const [errors, setErrors] = useState({});
