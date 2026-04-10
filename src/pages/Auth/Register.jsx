@@ -7,9 +7,17 @@ import AuthLayout from "../../components/Auth/AuthLayout";
 import Input from "../../components/Common/Input";
 import Button from "../../components/Common/Button";
 import { Link } from "react-router-dom";
-import { validateRegister } from "../../libs/authValidation";
+import { validateRegister } from "../../validation/authValidation";
+import CategorySelect from "../../components/Auth/CategorySelect";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { authApi } from "../../api/authApi";
+import { useNotificationStore } from "../../store/notificationStore";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { showNotification } = useNotificationStore();
+  const [loading, setLoading] = useState(false);
   const [accountType, setAccountType] = useState(""); // "user" | "professional"
   const [errors, setErrors] = useState({});
 
@@ -18,8 +26,8 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    skill: "", // only for professionals
-    location: "" // Only for professionals
+    category: "", // only for professionals
+    location: "", // Only for professionals
   });
 
   // Handle input
@@ -29,15 +37,15 @@ const Register = () => {
       ...prev,
       [name]: value,
     }));
-    // Clear error while typing 
-     setErrors((prev) => ({
-       ...prev,
-       [name]: "",
-     }));
+    // Clear error while typing
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
   // Submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = validateRegister(formData, accountType);
@@ -47,7 +55,26 @@ const Register = () => {
       return;
     }
 
-    console.log("Register Data:", { ...formData, accountType });
+    setLoading(true);
+    try {
+      const { confirmPassword: _confirmPassword, ...userData } = formData;
+      const payload = {
+        ...userData,
+        role: accountType,
+      };
+
+      const res = await authApi.register(payload);
+      showNotification(res.message, "success", () => navigate("/login"));
+    } catch (error) {
+      showNotification(error.message, "error");
+      // show backend error to UI
+      setErrors((prev) => ({
+        ...prev,
+        general: error.message,
+      }));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -68,7 +95,7 @@ const Register = () => {
             >
               👤 User
               <p className="text-sm text-gray-400 mt-2">
-                Find and hire artisans
+                Find and hire professional
               </p>
             </button>
 
@@ -142,13 +169,10 @@ const Register = () => {
           {/* Only show for artisans  skills + location*/}
           {accountType === "professional" && (
             <div className="grid grid-cols-2 gap-3">
-              <Input
-                label="Skill"
-                placeholder="(e.g. Tailor, Carpenter) ..."
-                name="skill"
-                value={formData.skill}
+              <CategorySelect
+                value={formData.category}
                 onChange={handleChange}
-                error={errors.skill}
+                error={errors.category}
               />
               <Input
                 label="Location"
@@ -184,8 +208,16 @@ const Register = () => {
             .
           </div>
 
-          <Button type="submit" className="w-full mt-8">
-            Create Account
+          <Button
+            disabled={loading}
+            type="submit"
+            className="w-full mt-8 disabled:cursor-not-allowed"
+          >
+            {loading ? (
+              <AiOutlineLoading3Quarters className="animate-spin" />
+            ) : (
+              "Create Account"
+            )}
           </Button>
 
           <div className="flex items-center gap-3 mb-4">
