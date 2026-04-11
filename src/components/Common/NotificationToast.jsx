@@ -10,11 +10,8 @@ const NotificationToast = () => {
   if (!isOpen) return null;
 
   const handleClick = () => {
+    if (onConfirm) onConfirm();
     closeNotification();
-  }
-  // This trigger whatever action when user clicks 'ok'
-  if (onConfirm) {
-    onConfirm()
   }
 
   return (

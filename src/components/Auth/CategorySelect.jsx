@@ -36,7 +36,7 @@ const CategorySelect = ({ value, onChange, error }) => {
       <label className="text-gray-500 text-xs md:text-sm ps-2">Category</label>
 
       <select
-        name="category"
+        name="category_id"
         value={value}
         onChange={onChange}
         className={`border ${

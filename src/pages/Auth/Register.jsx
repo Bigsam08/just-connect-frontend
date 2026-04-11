@@ -26,7 +26,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    category: "", // only for professionals
+    category_id: "", // only for professionals
     location: "", // Only for professionals
   });
 
@@ -62,7 +62,6 @@ const Register = () => {
         ...userData,
         role: accountType,
       };
-
       const res = await authApi.register(payload);
       showNotification(res.message, "success", () => navigate("/login"));
     } catch (error) {
@@ -170,9 +169,9 @@ const Register = () => {
           {accountType === "professional" && (
             <div className="grid grid-cols-2 gap-3">
               <CategorySelect
-                value={formData.category}
+                value={formData.category_id}
                 onChange={handleChange}
-                error={errors.category}
+                error={errors.category_id}
               />
               <Input
                 label="Location"
