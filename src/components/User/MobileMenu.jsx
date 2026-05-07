@@ -1,9 +1,4 @@
 /**
- * @description This is the mobile menu for user dashboard
- */
-
-
-/**
  * @description Mobile navigation for user dashboard
  */
 
@@ -15,16 +10,16 @@ const MobileNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <div className="md:hidden">
       {/* Top bar (mobile only) */}
       <div className="md:hidden flex items-center justify-between text-white">
         {/* Menu button */}
-        <button onClick={() => setOpen(true)}>
+        <button onClick={() => setOpen(true)} className="hover:text-black cursor-pointer">
           <Menu size={22} />
         </button>
 
         {/* Title */}
-        <h1 className="text-lg font-semibold">Dashboard</h1>
+        <h1 className="text-lg font-semibold hover:text-black">Dashboard</h1>
 
         {/* Spacer / future icon */}
         <div className="w-6" />
@@ -57,7 +52,7 @@ const MobileNav = () => {
           <AsideBar onNavigate={() => setOpen(false)} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

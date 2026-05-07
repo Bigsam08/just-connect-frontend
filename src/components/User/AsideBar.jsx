@@ -5,10 +5,11 @@
 import { NavLink } from "react-router-dom";
 import { userNavlinksData } from "../../data/UserDashboardNavLink";
 import { LogOut } from "lucide-react";
+import { useLogout } from "../../libs/handleLogout";
 
 const AsideBar = ({ onNavigate }) => {
-  // Handle log out function
-  const handleLogout = () => {};
+  // Log out functonality
+  const { handleLogout } = useLogout();
 
   return (
     <aside className="h-3/4 flex flex-col py-16 justify-between">

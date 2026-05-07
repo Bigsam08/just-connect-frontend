@@ -7,18 +7,17 @@ import { useState } from "react";
 import MobileNav from "../../components/User/MobileMenu";
 import { useNavigate } from "react-router-dom";
 import { getNameInitials } from "../../libs/getNameInitials";
+import { useLogout } from "../../libs/handleLogout";
 
 const Navbar = () => {
+  const { handleLogout } = useLogout();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const user = {
     name: "Agbebi Olu",
     image: "",
   };
-  const nameInitial = getNameInitials(user.name)
-
-  // Log out logic
-  const handleLogout = () => {};
+  const nameInitial = getNameInitials(user.name);
 
   return (
     <header className="bg-orange-500 md:bg-gray-50 h-16 px-4 md:px-10 w-full flex items-center justify-between">
@@ -30,7 +29,6 @@ const Navbar = () => {
         {/** Mobile Menu View */}
         <MobileNav />
       </div>
-
       {/* Right Section */}
       <div className="flex items-center gap-4">
         {/* Search */}

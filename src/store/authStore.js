@@ -6,8 +6,8 @@ import { authApi } from "../api/authApi";
 
 const useAuthStore = create((set) => ({
   user: null,
-  checkingUser: false,
   isAuthenticated: false,
+  checkingUser: true,
 
   // LOGIN
   login: async (formData) => {
@@ -16,15 +16,18 @@ const useAuthStore = create((set) => ({
       user: data.user,
       isAuthenticated: true,
     });
+    console.log("AUTH STORE:", data)
+    return data;
   },
 
   // LOGOUT
   logout: async () => {
-    await authApi.logout();
+    const data = await authApi.logout();
     set({
       user: null,
       isAuthenticated: false,
     });
+    return data;
   },
 
   // CHECK USER
@@ -37,12 +40,15 @@ const useAuthStore = create((set) => ({
         isAuthenticated: true,
         checkingUser: false,
       });
+      return data;
     } catch {
       set({
         user: null,
         isAuthenticated: false,
         checkingUser: false,
       });
+
+      return null;
     }
   },
 }));

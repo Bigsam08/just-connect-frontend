@@ -63,7 +63,8 @@ const Register = () => {
         role: accountType,
       };
       const res = await authApi.register(payload);
-      showNotification(res.message, "success", () => navigate("/login"));
+      showNotification(res.message, "success");
+      navigate("/login");
     } catch (error) {
       showNotification(error.message, "error");
       // show backend error to UI

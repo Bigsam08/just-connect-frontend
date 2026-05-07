@@ -5,10 +5,9 @@
 import { NavLink } from "react-router-dom";
 import { professionalNavLinks } from "../../data/ProfessionalNavlink";
 import { LogOut } from "lucide-react";
-
+import { useLogout } from "../../libs/handleLogout";
 const AsideBar = () => {
-  // Handle logout functionality
-  const handleLogOut = () => {};
+  const { handleLogout } = useLogout();
 
   return (
     <aside className="w-full h-full flex flex-col rounded-2xl bg-brand border border-gray-200 shadow-sm p-4">
@@ -67,7 +66,7 @@ const AsideBar = () => {
       <div className="mt-auto pt-6 border-t border-gray-200">
         <button
           type="button"
-          onClick={handleLogOut}
+          onClick={handleLogout}
           className="flex items-center justify-center gap-3 text-sm bg-white w-full py-2 text-gray-500 rounded-md hover:text-red-500 transition-colors cursor-pointer"
         >
           Log Out <LogOut size={14} />

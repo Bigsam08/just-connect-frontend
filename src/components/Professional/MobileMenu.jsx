@@ -5,12 +5,19 @@
 import { LogOut, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { professionalNavLinks } from "../../data/ProfessionalNavlink";
+import { useLogout } from "../../libs/handleLogout";
 
 const MobileMenu = ({ isOpen, onClose }) => {
+  const { handleLogout } = useLogout();
+
   // Handle logout functionality
-  const handleLogOut = () => {};
+  const logOutUser = async () => {
+    onClose();
+    await handleLogout();
+  };
+
   return (
-    <>
+    <div className="md:hidden">
       {/* Overlay */}
       <div
         className={`fixed inset-0 bg-black/40 z-40 transition-opacity ${
@@ -51,8 +58,8 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 end={link.path === "/dashboard/professional"}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2 rounded-lg ${
-                    isActive ? "bg-black text-white" : "hover:bg-gray-100"
+                  `flex items-center gap-3 px-3 py-2 rounded-lg text-white ${
+                    isActive ? "bg-black" : "hover:bg-white/20"
                   }`
                 }
               >
@@ -67,14 +74,14 @@ const MobileMenu = ({ isOpen, onClose }) => {
         <div className="mt-aut pt-6 border-t border-orange-300">
           <button
             type="button"
-            onClick={handleLogOut}
-            className="flex items-center justify-center gap-3 text-xs bg-white w-full py-2 text-gray-500 rounded-md hover:text-red-500 transition-colors cursor-pointer"
+            onClick={logOutUser}
+            className="flex items-center justify-center gap-3 text-xs bg-white w-full py-2 text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
           >
             Log Out <LogOut size={14} />
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

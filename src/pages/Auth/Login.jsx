@@ -7,11 +7,18 @@ import { useState } from "react";
 import AuthLayout from "../../components/Auth/AuthLayout";
 import Input from "../../components/Common/Input";
 import Button from "../../components/Common/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validateLogin } from "../../validation/authValidation";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNotificationStore } from "../../store/notificationStore";
+import useAuthStore from "../../store/authStore";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuthStore();
   const [errors, setErrors] = useState({});
+  const [loggingIn, setLoggingIn] = useState(false);
+  const { showNotification } = useNotificationStore();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -27,7 +34,7 @@ const Login = () => {
     }));
   };
 
-  const SubmitLoginData = (e) => {
+  const SubmitLoginData = async (e) => {
     e.preventDefault();
 
     const validationErrors = validateLogin(loginData);
@@ -36,12 +43,34 @@ const Login = () => {
       setErrors(validationErrors);
       return;
     }
+    setLoggingIn(true);
+    try {
+      const res = await login(loginData);
+      showNotification(res.message, "success");
+      navigate(`/dashboard/${res?.user?.role}`);
+    } catch (error) {
+      showNotification(error.message, "error");
+      // show backend error to UI
+      setErrors((prev) => ({
+        ...prev,
+        general: error.message,
+      }));
+    } finally {
+      setLoggingIn(false);
+    }
   };
 
   return (
     <AuthLayout>
-      <form onSubmit={SubmitLoginData} className="space-y-2 lg:space-y-4" data-aos="fade-in">
-        <h2 className="text-center font-bold text-xl text-brand pb-4"> Login </h2>
+      <form
+        onSubmit={SubmitLoginData}
+        className="space-y-2 lg:space-y-4"
+        data-aos="fade-in"
+      >
+        <h2 className="text-center font-bold text-xl text-brand pb-4">
+          {" "}
+          Login{" "}
+        </h2>
         <Input
           label="Email address"
           type="email"
@@ -64,9 +93,16 @@ const Login = () => {
           <Link to="/forgot-password"> Forgot password?</Link>
         </p>
 
-        <Button type="submit" className="w-full mt-8">
-          {" "}
-          Login
+        <Button
+          disabled={loggingIn}
+          type="submit"
+          className="w-full mt-8 disabled:cursor-not-allowed"
+        >
+          {!loggingIn ? (
+            "Login"
+          ) : (
+            <AiOutlineLoading3Quarters className="animate-spin" />
+          )}
         </Button>
 
         <div className="mt-6">
