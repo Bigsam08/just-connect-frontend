@@ -1,10 +1,11 @@
 /**
- * @description Displays the Artisians routes, i.e those rendering services
+ * @description Displays the Artisans routes, i.e those rendering services
  * @access Professionals Only.
  */
 
 import { lazy } from "react";
 import { Route } from "react-router-dom";
+import RoleGuard from "./Guards/RoleGuard";
 
 const Layout = lazy(() => import("../pages/ProfessionalDashboard/Layout"));
 const Home = lazy(() => import("../pages/ProfessionalDashboard/Home"));
@@ -20,16 +21,18 @@ const Notifications = lazy(
 const Settings = lazy(() => import("../pages/ProfessionalDashboard/Settings"));
 
 const ProfessionalRoutes = (
-  <Route path="/dashboard/professional" element={<Layout />}>
-    <Route index element={<Home />} />
-    <Route path="bookings" element={<Bookings />} />
-    <Route path="services" element={<Services />} />
-    <Route path="messages" element={<Messages />} />
-    <Route path="earnings" element={<Earnings />} />
-    <Route path="reviews" element={<Reviews />} />
-    <Route path="profile" element={<Profile />} />
-    <Route path="notifications" element={<Notifications />} />
-    <Route path="settings" element={<Settings />} />
+  <Route element={<RoleGuard allowedRoles={["professional"]} />}>
+    <Route path="/dashboard/professional" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="bookings" element={<Bookings />} />
+      <Route path="services" element={<Services />} />
+      <Route path="messages" element={<Messages />} />
+      <Route path="earnings" element={<Earnings />} />
+      <Route path="reviews" element={<Reviews />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="notifications" element={<Notifications />} />
+      <Route path="settings" element={<Settings />} />
+    </Route>
   </Route>
 );
 

@@ -4,14 +4,17 @@
  * @access Admin only
  */
 
-import { Route } from "react-router-dom"
-import Layout from "../pages/AdminDashboard/Layout"
-import Home from "../pages/AdminDashboard/Home"
+import { Route } from "react-router-dom";
+import Layout from "../pages/AdminDashboard/Layout";
+import Home from "../pages/AdminDashboard/Home";
+import RoleGuard from "./Guards/RoleGuard";
 
 const AdminRoutes = (
-    <Route path="/dashboard/admin" element={<Layout/>}>
-        <Route index element={<Home />}/>
+  <Route element={<RoleGuard allowedRoles={["admin"]}  />}>
+    <Route path="/dashboard/admin" element={<Layout />}>
+      <Route index element={<Home />} />
     </Route>
-)
+  </Route>
+);
 
 export default AdminRoutes;

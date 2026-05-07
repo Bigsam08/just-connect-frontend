@@ -5,6 +5,7 @@
 
 import { lazy } from "react"
 import { Route } from "react-router-dom"
+import RoleGuard from "./Guards/RoleGuard";
 
 const Layout = lazy(() => import("../pages/UserDashboard/Layout"));
 const Home = lazy(() => import("../pages/UserDashboard/Home"));
@@ -19,16 +20,18 @@ const ArtisanProfile = lazy(() => import("../pages/UserDashboard/ArtisanProfile"
 
 
 const UserRoutes = (
-  <Route path="/dashboard/user" element={<Layout />}>
-    <Route index element={<Home />} />
-    <Route path="find-artisan" element={<FindArtisan />} />
-    <Route path="bookings" element={<Bookings />} />
-    <Route path="messages" element={<Message />} />
-    <Route path="messages/:id" element={<Chat />} />
-    <Route path="saved" element={<Saved />} />
-    <Route path="profile" element={<Profile />} />
-    <Route path="settings" element={<Settings />} />
-    <Route path="artisan-profile/:id" element={<ArtisanProfile />} />
+  <Route element={<RoleGuard allowedRoles={["user"]}/>}>
+    <Route path="/dashboard/user" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="find-artisan" element={<FindArtisan />} />
+      <Route path="bookings" element={<Bookings />} />
+      <Route path="messages" element={<Message />} />
+      <Route path="messages/:id" element={<Chat />} />
+      <Route path="saved" element={<Saved />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="settings" element={<Settings />} />
+      <Route path="artisan-profile/:id" element={<ArtisanProfile />} />
+    </Route>
   </Route>
 ); 
 
