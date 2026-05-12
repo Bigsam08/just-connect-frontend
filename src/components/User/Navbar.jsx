@@ -1,5 +1,6 @@
 /**
  * @description This component styles the user dashboard navbar
+ *              This uses a global logout function imported from the lib folder
  */
 
 import { Bell, LogOut, Search, Settings, User } from "lucide-react";
@@ -8,15 +9,13 @@ import MobileNav from "../../components/User/MobileMenu";
 import { useNavigate } from "react-router-dom";
 import { getNameInitials } from "../../libs/getNameInitials";
 import { useLogout } from "../../libs/handleLogout";
+import useAuthStore from "../../store/authStore";
 
 const Navbar = () => {
+  const { user } = useAuthStore();
   const { handleLogout } = useLogout();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const user = {
-    name: "Agbebi Olu",
-    image: "",
-  };
   const nameInitial = getNameInitials(user.name);
 
   return (
@@ -69,27 +68,27 @@ const Navbar = () => {
 
           {/* Dropdown */}
           {open && (
-            <div className="absolute right-0 mt-2 pb-8 w-40 bg-white text-gray-500 border border-gray-200 rounded-lg shadow z-50">
+            <div className="absolute right-0 mt-2 pb-4 md:pb-8 w-40 bg-white text-gray-400 border border-gray-200 rounded-lg shadow z-50" data-aos="fade">
               {/** Header */}
-              <div className="py-6 bg-brand rounded-t-lg mb-4"></div>
+              <div className="py-4 bg-brand rounded-t-lg mb-2"></div>
               <button
                 type="button"
                 onClick={() => navigate("profile")}
-                className="flex gap-2 items-center w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                className="flex gap-2 items-center w-full text-left px-4 py-2 text-xs md:text-sm hover:bg-gray-100 cursor-pointer"
               >
                 <User size={14} /> Profile
               </button>
               <button
                 type="button"
                 onClick={() => navigate("settings")}
-                className="flex gap-2 items-center w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                className="flex gap-2 items-center w-full text-left px-4 py-2 text-xs md:text-sm hover:bg-gray-100 cursor-pointer"
               >
                 <Settings size={14} /> Settings
               </button>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="flex gap-2 items-center w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 cursor-pointer"
+                className="flex gap-2 items-center w-full text-left px-4 py-2 text-xs md:text-sm text-red-400 hover:bg-red-50 cursor-pointer"
               >
                 <LogOut size={14} /> Logout
               </button>

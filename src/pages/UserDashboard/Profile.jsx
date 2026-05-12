@@ -4,22 +4,24 @@
 
 import { getNameInitials } from "../../libs/getNameInitials";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import useAuthStore from "../../store/authStore";
+import { FormatDateJoined } from "../../libs/convertDateFormat";
 
 const Profile = () => {
-  // sample user data (replace with API later)
-  const user = {
-    name: "Big Sam",
-    email: "bigsam@example.com",
-    phone: "+234 800 000 0000",
-    sex: "",
-    address: "",
-    location: "Lagos, Nigeria",
-    is_verified: false,
-    joined: "January 2026",
-    profile_picture: "",
-    bookings: 12,
-    completed: 10,
-  };
+  const { user } = useAuthStore();
+  // const user = {
+  //   name: "Big Sam",
+  //   email: "bigsam@example.com",
+  //   phone: "+234 800 000 0000",
+  //   sex: "",
+  //   address: "",
+  //   location: "Lagos, Nigeria",
+  //   is_verified: false,
+  //   joined: "January 2026",
+  //   profile_picture: "",
+  //   bookings: 12,
+  //   completed: 10,
+  // };
 
   return (
     <div className="w-full max-w-4xl space-y-6">
@@ -58,14 +60,18 @@ const Profile = () => {
                 </div>
               ) : (
                 <div className="flex items-center gap-2 px-2">
-                  <FaTimesCircle color="yellow" size={14} />
+                  <FaTimesCircle color="blue" size={14} />
                   <span className="text-xs text-gray-500"> not verified</span>
                 </div>
               )}{" "}
             </span>
           </h1>
-          <p className="text-gray-500 text-sm">{user.location}</p>
-          <p className="text-gray-400 text-xs mt-1">Joined {user.joined}</p>
+          <p className="text-gray-500 text-sm">
+            {user.location || "location: N/A"}
+          </p>
+          <p className="text-gray-400 text-xs mt-1">
+            Joined: {FormatDateJoined(user.dateJoined)}
+          </p>
         </div>
       </section>
 
@@ -88,17 +94,17 @@ const Profile = () => {
           </div>
           <div>
             <span className="text-gray-500">Phone</span>
-            <p className="font-medium">{user.phone}</p>
+            <p className="font-medium">{user.phone || "N/A"}</p>
           </div>
 
           <div>
             <span className="text-gray-500">Phone</span>
-            <p className="font-medium">{user.phone}</p>
+            <p className="font-medium">{user.phone || "N/A"}</p>
           </div>
 
           <div>
             <span className="text-gray-500">Location</span>
-            <p className="font-medium">{user.location}</p>
+            <p className="font-medium">{user.location || "N/A"}</p>
           </div>
         </div>
       </section>
@@ -106,12 +112,12 @@ const Profile = () => {
       {/* Stats */}
       <section className="grid grid-cols-2 gap-4">
         <div className="bg-white p-4 rounded-2xl shadow text-center">
-          <h3 className="text-xl font-semibold">{user.bookings}</h3>
+          <h3 className="text-xl font-semibold">{user.bookings || "0"}</h3>
           <p className="text-gray-500 text-sm">Total Bookings</p>
         </div>
 
         <div className="bg-white p-4 rounded-2xl shadow text-center">
-          <h3 className="text-xl font-semibold">{user.completed}</h3>
+          <h3 className="text-xl font-semibold">{user.completed || "0"}</h3>
           <p className="text-gray-500 text-sm">Completed Jobs</p>
         </div>
       </section>

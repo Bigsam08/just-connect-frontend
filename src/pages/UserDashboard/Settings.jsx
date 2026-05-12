@@ -6,18 +6,20 @@ import { useState } from "react";
 import { getNameInitials } from "../../libs/getNameInitials";
 import AccountDeletionModal from "../../components/User/AccountDeleteModal";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 
 const Settings = () => {
-  const user = {
-    name: "Big Sam",
-    email: "bigsam@example.com",
-    phone: "+2348000000000",
-    location: "Lagos, Nigeria",
-    password: "",
-    profile_picture: "",
-    sex: "",
-    address: "",
-  };
+  const { user } = useAuthStore();
+  // const user = {
+  //   name: "Big Sam",
+  //   email: "bigsam@example.com",
+  //   phone: "+2348000000000",
+  //   location: "Lagos, Nigeria",
+  //   password: "",
+  //   profile_picture: "",
+  //   sex: "",
+  //   address: "",
+  // };
   const [deleteModal, setDeleteModal] = useState(false);
   const [form, setForm] = useState({
     name: user.name,
@@ -59,7 +61,7 @@ const Settings = () => {
     console.log("Saving settings:", form);
   };
 
-  // Handle delete acoount logic
+  // Handle delete account logic
   const handleDeleteAccount = async () => {
     try {
       console.log("Deleting account...");
@@ -150,7 +152,7 @@ const Settings = () => {
           <input
             type="text"
             name="address"
-            placeholder="23, johnson mark street."
+            placeholder="e.g 23, johnson mark street."
             value={form.address}
             onChange={handleChange}
             className="p-3 border border-gray-200 bg-white text-sm text-gray-500 rounded-lg outline-none"

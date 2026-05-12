@@ -8,6 +8,7 @@ import ArtisanCard from "../../components/User/ArtisanCard";
 import ActiveBooking from "../../components/User/ActiveBooking";
 import { recommendedArtisans } from "../../data/RecommendedArtisans"
 import { Search } from "lucide-react";
+import useAuthStore from "../../store/authStore";
 
 
 // Greeting function to set which time of the day.
@@ -19,7 +20,7 @@ const getGreeting = () => {
 };
 
 const Home = () => {
-  
+  const { user } = useAuthStore();
   const [search, setSearch] = useState("");
   const activeBooking = null; // Replace with API data
 
@@ -37,7 +38,7 @@ const Home = () => {
         {/* Greeting */}
         <section>
           <h1 className="text-2xl font-semibold">
-            {getGreeting()}, Olu Sam 👋
+            {getGreeting()}, {user.name} 👋
           </h1>
           <p className="text-gray-200 text-sm">
             What do you need help with today?
