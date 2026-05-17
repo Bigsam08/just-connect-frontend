@@ -2,21 +2,23 @@
  * @description The top bar for professional dashboard
  */
 
-import { Bell, Menu, Search } from "lucide-react";
+import { Bell, LogOut, Menu, Search } from "lucide-react";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { getNameInitials } from "../../libs/getNameInitials";
+import useAuthStore from "../../store/authStore";
+import { useLogout } from "../../libs/handleLogout";
 
 const TopBar = () => {
+  const { user } = useAuthStore();
+  const { handleLogout } = useLogout();
   const [isOpen, setIsOpen] = useState(false);
-  const user = {
-    name: "agbebi samuel",
-    image: ""
-  }
+  const [openLogoutMenu, setOpenLogoutMenu] = useState(false);
+
 
   return (
     <>
-      <header className="w-full h-16 bg-brand md:mt-4 rounded-lg flex items-center justify-between px-4">
+      <header className="relative w-full h-16 bg-brand md:mt-4 rounded-lg flex items-center justify-between px-4">
         {/* Left */}
         <div className="flex items-center gap-3">
           <button
@@ -50,11 +52,14 @@ const TopBar = () => {
           </button>
 
           {/* User Profile */}
-          <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg transition">
-            <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center text-sm font-medium">
-              {user.image ? (
+          <div className="flex items-center gap-2 px-2 py-1 rounded-lg transition">
+            <div
+              onClick={() => setOpenLogoutMenu(!openLogoutMenu)}
+              className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center text-sm font-medium cursor-pointer"
+            >
+              {user.profile_picture ? (
                 <img
-                  src={user.image}
+                  src={user.profile_picture}
                   alt={user.name}
                   className="h-full w-full object-center rounded-full"
                 />
@@ -67,6 +72,21 @@ const TopBar = () => {
             </span>
           </div>
         </div>
+        {/** Display Navbar logout drop down menu */}
+        {openLogoutMenu && (
+          <div
+            className="absolute top-full bg-white right-0 w-32 h-20 border border-gray-200 shadow-xl p-4 rounded-md flex justify-center items-center z-50"
+            data-aos="fade"
+          >
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500"
+            >
+              <LogOut size={14} /> Logout
+            </button>
+          </div>
+        )}
       </header>
 
       {/* Mobile Sidebar */}
