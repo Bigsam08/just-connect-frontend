@@ -8,9 +8,9 @@ import Navbar from "../../components/User/Navbar";
 
 const Layout = () => {
   return (
-    <div className="flex h-screen w-full bg-gray-50">
+    <div className="flex h-screen w-full bg-gray-50 md:p-4">
       {/* Sidebar */}
-      <aside className="hidden md:flex justify-center w-64 p-4 flex-col bg-brand rounded-r-full">
+      <aside className="hidden md:flex w-64 shrink-0 p-4 flex-col bg-brand rounded-r-4xl overflow-hidden">
         <AsideBar />
       </aside>
 

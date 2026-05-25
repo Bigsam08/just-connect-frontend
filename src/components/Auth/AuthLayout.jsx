@@ -13,7 +13,7 @@ const AuthLayout = ({ children }) => {
     <div className="min-h-screen relative bg-brand overflow-x-hidden">
       {/* ===== Top Background Section ===== */}
       <div
-        className="h-[45vh] md:h-[50vh] w-full relative"
+        className="min-h-20 md:min-h-96 w-full relative flex items-center justify-center"
         style={{
           backgroundImage: `url(${HeroIllustration})`,
           backgroundSize: "cover",
@@ -24,8 +24,8 @@ const AuthLayout = ({ children }) => {
         <div className="absolute inset-0 bg-black/70"></div>
 
         {/* Logo + Text */}
-        <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-center">
-          <div className="flex justify-center mb-6">
+        <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-center pb-24 md:pb-32">
+          <div className="flex justify-center my-6">
             <img src={Logo} alt="JustConnect Logo" className="h-8" />
           </div>
           <h1 className="hidden md:block text-3xl md:text-4xl font-bold text-white mb-2">
@@ -41,20 +41,20 @@ const AuthLayout = ({ children }) => {
       </div>
 
       {/* ===== Floating Form Section ===== */}
-      <div className="relative z-20 -mt-24 md:-mt-32 px-4 pb-20">
-        <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-2xl shadow-black/10 p-6 md:p-8 mb-20">
+      <div className="relative z-20 -mt-16 sm:-mt-20 md:-mt-32 px-4 pb-20">
+        <div className="max-w-md mx-auto bg-white rounded-2xl shadow-2xl shadow-white/10 p-6 md:p-8 mb-20">
           {/* Sticky header still fine */}
           <div className="sticky top-0 bg-white pb-4 z-10">
             <button
               onClick={() => navigate("/")}
-              className="text-gray-500 text-sm hover:bg-gray-100 px-2 py-1 rounded"
+              className="text-gray-500 text-xs hover:bg-gray-100 px-2 py-1 rounded"
             >
               ← Back
             </button>
           </div>
 
           {/* Form */}
-          <div className="space-y-4">{children}</div>
+          <div className="space-y-2">{children}</div>
         </div>
       </div>
     </div>

@@ -7,31 +7,36 @@ import { GiCompass } from "react-icons/gi";
 
 const SearchBar = () => {
   return (
-    <div className="backdrop-blur-md bg-white shadow-xl border border-gray-200 rounded-xl p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-center gap-3 w-full">
-      {/* Search skill */}
-      <div className="flex items-center w-full border rounded-lg px-3">
-        <FaSearch className="text-brand mr-2" />
-        <input
-          type="text"
-          placeholder="Search for artisan or skill..."
-          className="w-full py-2 outline-none text-gray-700 bg-gray-100 ps-4 rounded-md"
-        />
-      </div>
+    <div className="w-full max-w-6xl mx-auto backdrop-blur-md bg-white/95 shadow-2xl border border-gray-200 rounded-2xl p-3 md:p-4">
+      <div className="flex flex-col lg:flex-row items-stretch gap-3">
+        {/* Search skill */}
+        <div className="flex items-center w-full border border-gray-200 rounded-xl px-3 bg-gray-50 focus-within:ring-2 focus-within:ring-brand transition">
+          <FaSearch size={16} className="text-brand shrink-0" />
 
-      {/* Location */}
-      <div className="flex items-center w-full border rounded-lg px-3">
-        <FaMapMarkerAlt className="text-brand mr-2" />
-        <input
-          type="text"
-          placeholder="Location"
-          className="w-full py-2 outline-none text-gray-700 bg-gray-100 ps-4 rounded-md"
-        />
-      </div>
+          <input
+            type="text"
+            placeholder="Search for artisan or skill..."
+            className="w-full py-2 px-3 outline-none text-gray-700 bg-transparent text-xs"
+          />
+        </div>
 
-      {/* Button */}
-      <button className="flex items-center justify-center gap-4 bg-brand hover:bg-brand-hover text-white cursor-pointer px-6 py-2 rounded-lg font-medium transition whitespace-nowrap">
-        <GiCompass /> Search
-      </button>
+        {/* Location */}
+        <div className="flex items-center w-full border border-gray-200 rounded-xl px-3 bg-gray-50 focus-within:ring-2 focus-within:ring-brand transition text-xs">
+          <FaMapMarkerAlt size={16} className="text-brand shrink-0" />
+
+          <input
+            type="text"
+            placeholder="Location"
+            className="w-full py-2 px-3 outline-none text-gray-700 bg-transparent"
+          />
+        </div>
+
+        {/* Button */}
+        <button className="flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-white cursor-pointer px-6 md:px-8 py-3 text-xs rounded-xl font-medium transition whitespace-nowrap min-w-35">
+          <GiCompass size={14} />
+          Search
+        </button>
+      </div>
     </div>
   );
 };

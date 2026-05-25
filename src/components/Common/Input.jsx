@@ -13,13 +13,13 @@ const Input = ({ label, type = "text", error, ...props }) => {
   return (
     <div className="w-full">
       {/* Label */}
-      <label className="text-xs md:text-sm text-gray-500 ps-2">{label}</label>
+      <label className="text-xs text-gray-500 ps-2">{label}</label>
 
       {/* Input wrapper */}
       <div className="relative mt-1">
         <input
           type={isPassword ? (showPassword ? "text" : "password") : type}
-          className={`bg-gray-50 w-full rounded-md p-3 ps-2 text-xs lg:text-sm text-gray-700 
+          className={`bg-gray-50 w-full rounded-md p-2 ps-2 text-xs lg:text-sm text-gray-700 
           focus:ring-2 focus:ring-orange-500 outline-none transition
           ${error ? "border border-red-400" : "border border-gray-200"}`}
           {...props}

@@ -3,13 +3,16 @@
  */
 
 import { useEffect, useState } from "react";
+import { FaHamburger } from "react-icons/fa";
 import { NavLinks } from "../../data/NavLink";
 import MobileMenu from "./MobileMenu";
 import { Link } from "react-router-dom";
 import Button from "../Common/Button";
 
 const Navbar = () => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeMenu = () => setShowMobileMenu(false);
 
   /** Listen to when the page is scrolled and set state */
   useEffect(() => {
@@ -48,7 +51,7 @@ const Navbar = () => {
             {NavLinks.map((n, idx) => (
               <li
                 key={idx}
-                className="hover:text-brand-hover cursor-pointer transition"
+                className="hover:text-brand-hover text-xs cursor-pointer transition"
               >
                 <a href={n.link}>{n.title}</a>
               </li>
@@ -57,12 +60,20 @@ const Navbar = () => {
 
           {/* CTA */}
           <Link to="/register" className="hidden md:block">
-            <Button>Join now</Button>
+            <Button size="sm">Join now</Button>
           </Link>
 
           {/** Mobile Nav link */}
-          <MobileMenu />
+          <button
+            type="button"
+            onClick={() => setShowMobileMenu(true)}
+            className="md:hidden cursor-pointer p-2 rounded-md hover:ring-2 hover:ring-orange-500 transition"
+          >
+            <FaHamburger size={24} className="hover:text-brand-hover" />
+          </button>
         </div>
+
+        <MobileMenu showMenu={showMobileMenu} closeMenu={closeMenu} />
       </div>
     </nav>
   );

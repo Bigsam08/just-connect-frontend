@@ -32,6 +32,12 @@ const Login = () => {
       ...prev,
       [name]: value,
     }));
+
+    // clear error on type
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
   const SubmitLoginData = async (e) => {
@@ -64,10 +70,9 @@ const Login = () => {
     <AuthLayout>
       <form
         onSubmit={SubmitLoginData}
-        className="space-y-2 lg:space-y-4"
         data-aos="fade-in"
       >
-        <h2 className="text-center font-bold text-xl text-brand pb-4">
+        <h2 className="text-center font-bold text-md text-brand pb-4">
           {" "}
           Login{" "}
         </h2>
@@ -89,14 +94,14 @@ const Login = () => {
           onChange={handleChange}
           error={errors.password}
         />
-        <p className="text-sm text-gray-400 text-end hover:underline">
+        <p className="text-xs text-gray-400 text-end hover:underline mt-2">
           <Link to="/forgot-password"> Forgot password?</Link>
         </p>
 
         <Button
           disabled={loggingIn}
           type="submit"
-          className="w-full mt-8 disabled:cursor-not-allowed"
+          className="w-full mt-4 disabled:cursor-not-allowed"
         >
           {!loggingIn ? (
             "Login"
@@ -112,7 +117,7 @@ const Login = () => {
             <div className="flex-1 h-px bg-gray-200"></div>
           </div>
 
-          <p className="text-sm text-center text-gray-500">
+          <p className="text-xs text-center text-gray-500">
             Don’t have an account?{" "}
             <Link to="/register" className="text-orange-500 hover:underline">
               Join now

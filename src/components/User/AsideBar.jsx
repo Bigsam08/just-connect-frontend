@@ -12,12 +12,12 @@ const AsideBar = ({ onNavigate }) => {
   const { handleLogout } = useLogout();
 
   return (
-    <aside className="h-3/4 flex flex-col py-16 justify-between">
+    <aside className="h-full flex flex-col py-8 justify-between overflow-hidden">
       {/* Top */}
       <div>
         {/* Logo */}
         <div className="mb-8 px-2 flex items-center gap-2">
-          <div className="h- w-6 bg-black rounded-md text-center text-white font-bold">
+          <div className="h-6 w-6 bg-black rounded-md text-center text-white font-bold">
             U
           </div>
           <div>
@@ -27,7 +27,7 @@ const AsideBar = ({ onNavigate }) => {
         </div>
 
         {/* Nav Links */}
-        <nav className="flex flex-col gap-1">
+        <nav className="flex flex-col gap-1 overflow-y-auto">
           {userNavlinksData.map((item) => {
             const Icon = item.icon;
 
@@ -40,12 +40,15 @@ const AsideBar = ({ onNavigate }) => {
                   `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition ${
                     isActive
                       ? "bg-black text-white"
-                      : "text-white hover:bg-white hover:text-orange-500 transition-transform duration-300 hover:translate-x-4 hover:scale-x-110"
+                      : "text-white hover:bg-white hover:text-orange-500 transition-all duration-300"
                   }`
                 }
                 onClick={onNavigate}
               >
-                <Icon size={18} />
+                <Icon
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
                 {item.name}
               </NavLink>
             );
@@ -58,9 +61,9 @@ const AsideBar = ({ onNavigate }) => {
         <button
           type="button"
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full text-left px-3 py-2 text-sm cursor-pointer bg-white text-red-500 hover:bg-red-500 hover:text-white rounded-lg"
+          className="flex items-center gap-3 w-full text-left px-3 py-2 text-xs cursor-pointer bg-white text-red-500 hover:bg-red-500 hover:text-white rounded-lg"
         >
-          <LogOut size={18} /> Logout
+          <LogOut size={14} /> Logout
         </button>
       </div>
     </aside>
